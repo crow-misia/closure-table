@@ -3,15 +3,15 @@ import org.gradle.api.publish.maven.MavenPom
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.31"
+    kotlin("jvm")
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.4"
 }
 
 val artifactName = "closure-table"
-val artifactGroup = "com.github.crow-misia"
+val artifactGroup = "io.github.zncmn"
 group = artifactGroup
-version = "1.0.0"
+version = "1.0.1"
 
 val pomUrl = "https://github.com/crow-misia/closure-table"
 val pomScmUrl = "https://github.com/crow-misia/closure-table"
@@ -21,11 +21,6 @@ val githubRepo = "crow_misia/closure-table"
 val pomLicenseName = "The Apache Software License, Version 2.0"
 val pomLicenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
 val pomLicenseDist = "repo"
-
-
-repositories {
-    jcenter()
-}
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -82,7 +77,7 @@ publishing {
 fun findProperty(s: String) = project.findProperty(s) as String?
 bintray {
     user = findProperty("bintray_user")
-    key = findProperty("bintray_key")
+    key = findProperty("bintray_apikey")
     publish = true
     setPublications(publicationName)
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {

@@ -1,4 +1,4 @@
-package com.github.crowmisia.closuretable
+package io.github.zncmn.closuretable
 
 import java.util.LinkedList
 
@@ -98,7 +98,12 @@ class ClosureTable<ID: Comparable<ID>> {
         return afterSortedTable.map { it.freeze() }.toList()
     }
 
-    private fun getNode(id: ID) = nodeHolder.getOrPut(id) { Node.newNode(id, nodeHolder) }
+    private fun getNode(id: ID) = nodeHolder.getOrPut(id) {
+        Node.newNode(
+            id,
+            nodeHolder
+        )
+    }
 }
 
 internal class PathComparator<ID: Comparable<ID>> : Comparator<Path<ID>> {
@@ -273,5 +278,6 @@ class MutablePath<ID>(
 
     override fun hashCode() = dest.hashCode()
 
-    override fun freeze(): Path<ID> = FrozePath(src, dest, depth)
+    override fun freeze(): Path<ID> =
+        FrozePath(src, dest, depth)
 }

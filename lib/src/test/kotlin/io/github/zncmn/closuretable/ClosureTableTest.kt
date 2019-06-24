@@ -1,4 +1,4 @@
-package com.github.crowmisia.closuretable
+package io.github.zncmn.closuretable
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
